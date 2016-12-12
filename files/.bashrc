@@ -56,13 +56,15 @@ fi
 function prompt {
 	local FREESPACE=`df -h | grep /dev/root | awk '{print "used " $3 " free " $4}'`
 	local FREEMEM=`free -m | grep Mem: | awk '{print "used " $3 "M free " $4 "M"}'`
-	local ESC="\[\033"
-	local GREY_BLACK="$ESC[00;37;40m"
-	local WHITE_BLACK="$ESC[00;37;40m"
-	local WHITE_BLUE="$ESC[00;37;44m"
-	local WHITE_RED="$ESC[00;37;41m"
-	local RED_BLACK="$ESC[00;31;40m"
-	export PS1="\n$WHITE_BLUE  \d \t  $WHITE_BLACK @ \w\n$F_GREY\u $ "
+	local GREY_BLACK="\e[0;37;40m"
+	local WHITE_BLACK="\e[1;37;40m"
+	local WHITE_BLUE="\e[1;37;44m"
+	local WHITE_RED="\e[1;37;41m"
+	local WHITE_CYAN="\e[1;37;46m"
+	local RED_BLACK="\e[0;31;40m"
+	local YELLOW_BLACK="\e[0;33;40m"
+	local GREEN_BLACK="\e[0;32;40m"
+	export PS1="\n$WHITE_BLUE \d \t $GREEN_BLACK \u $WHITE_BLACK@ $YELLOW_BLACK$HOSTNAME$WHITE_BLACK on \w\n$F_GREY \e[0m$ "
 }
 prompt
 
@@ -99,6 +101,9 @@ alias ll='ls -l'
 alias la='ls -lA'
 alias cd..='cd ..'
 alias cd...='cd ../..'
+alias ga='git add -Af *'
+alias gc='git commit -m "Committed by Fabien on \d \t"'
+alias gp='git push origin master'
 #alias l='ls -CF'
 
 # Alias definitions.

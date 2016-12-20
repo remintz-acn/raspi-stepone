@@ -30,7 +30,7 @@ To use Stepone, follow these instructions:
 * Then download Stepone by typing `git clone https://github.com/fpapleux/raspi-stepone`.
 * Go into the Stepone directory `cd raspi-stepone`.
 * Start the setup script by typing `sudo ./setup.sh` and follow the few prompts and then just wait until it invites you to reboot.
-* Reboot. Verify that everything is running (if it did not find the 'fabien' SSID, your raspberry pi should have created an access point called 'Fabien 2605'.
+* Reboot. Verify that everything is running (if it did not find the 'fabien' SSID, your raspberry pi should have created an access point called 'Fabien 2605' that uses the password 'harleydavidson'.
 
 When this is done, I then turn off the pi, plug the SD card back into my laptop and save the new image onto my laptop. From that point on, I will use that image to create new raspberry pi's.
 

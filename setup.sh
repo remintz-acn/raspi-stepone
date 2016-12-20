@@ -64,7 +64,10 @@ setupLocale=1
 installNode=1
 
 # ----- Free Serial Port from console use --------------------------------------
-freeSerialPort=1
+freeSerialPort=0
+
+# ----- Standard Wifi configuration -----------------
+setupWifi=1
 
 
 #####################################################################################
@@ -152,6 +155,36 @@ if [ "$setupLocale" == "1" ]; then
 	sudo cp -f files/locale.gen /etc/locale.gen 		# Set locale to US
 	sudo cp -f files/keyboard /etc/default/keyboard		# Set keyboard layout to US
 	echo -e "\n\nUS Locale & Keyboard setup complete\n\n"
+fi
+
+#####################################################################################
+## Setup Wifi
+#####################################################################################
+
+if [ "$setupWifi" == "1" ]; then
+	clear; echo -e "\n\n\n"
+	echo -e " Setup default Wifi values "
+	echo -e "-------------------------------------------------------------------------------------"
+
+	# /etc/interfaces
+	sudo mv /etc/network/interfaces /etc/network/interfaces.old
+	sudo cp files/interfaces /etc/network/
+	sudo chown root:root /etc/network/interfaces
+	sudo chmod 644 /etc/network/interfaces
+	
+	# /etc/wpa_supplicant/wpa_supplicant.conf
+	sudo mv /etc/wpa_supplicant/wpa_supplicant.conf /etc/wpa_supplicant/wpa_supplicant.conf.old
+	sudo cp -f files/wpa_supplicant.conf /etc/wpa_supplicant/
+	sudo chown root:root /etc/wpa_supplicant/wpa_supplicant.conf
+	sudo chmod 600 /etc/wpa_supplicant/wpa_supplicant.conf
+
+	# dhcp server
+	sudo apt-get install -y isc-dhcp-server
+	sudo mv /etc/dhcp/dhcpd.conf /etc/dhcp/dhcpd.conf.old
+	sudo cp files/dhcpd.conf /etc/dhcp/
+	sudo chown root:root /etc/dhcp/dhcpd.conf
+	sudo chmod 644 /etc/dhcp/dhcpd.conf
+	
 fi
 
 #####################################################################################

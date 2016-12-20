@@ -34,5 +34,17 @@ To use Stepone, follow these instructions:
 
 When this is done, I then turn off the pi, plug the SD card back into my laptop and save the new image onto my laptop. From that point on, I will use that image to create new raspberry pi's.
 
+## Setting up wifi
+
+Your wifi is configured in `/etc/wpa_supplicant/wpa_supplicant.conf`. The file contains 2 network sections:
+1. Your client wifi connection
+2. An Access Point connection that gets automatically configured if the first one fails
+
+So, if your Pi doesn't find a network, it will automatically turn into an access point that you can connect to. If that happens:
+* Connect to the network
+* ssh into the pi @ 192.168.4.1 and update the wpa_supplicant's network information.
+
+By default, the network's SSID that it broadcasts is `Fabien 2605` using `harleydavidson` as password. Feel free to adjust to your need.
+
 Let me know if you have any question.
  

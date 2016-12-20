@@ -185,6 +185,11 @@ if [ "$setupWifi" == "1" ]; then
 	sudo chown root:root /etc/dhcp/dhcpd.conf
 	sudo chmod 644 /etc/dhcp/dhcpd.conf
 	
+	# Configure dhcp client
+	sudo mv /etc/dhcpcd.conf /etc/dhcpcd.conf.old
+	sudo cp files/dhcpcd.conf /etc/dhcpcd.conf
+	sudo chown root:root /etc/dhcpcd.conf
+	sudo chmod 644 /etc/dhcpcd.conf
 fi
 
 #####################################################################################

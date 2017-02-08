@@ -9,27 +9,13 @@ echo -e "\n- Make sure it is connected to the Internet... (probably use an ether
 
 # ----- change pi password --------------------------------
 changePiPwd=1
-cont="n"
-echo -n "Let's make sure we change the default pi user password for security purposes."
-while [ "$cont" != "y" ] && [ "$cont" != "Y" ]; do
-	echo -n "Enter new pi user password: "; read piPassword
-	echo -n "Password ok [y/n]? "; read -n 1 cont; echo
-	if [ "$piPassword" == "" ]; then cont="n"; fi
-done
-echo -e "\n\n"
+piPassword=$howC@se1700!!!
 
 # ----- Setup New user ------------------------------------
 setupPrimaryUser=1
-cont="n"
-echo -e "\n\nLet's also set up a new primary user so we don't even touch pi in the future..."
-while [ "$cont" != "y" ] && [ "$cont" != "Y" ]; do
-	echo -n "Enter username: "; read user
-	echo -n "Enter full name: "; read userFullName
-	echo -n "Enter password: "; read password
-	echo -n "User information ok [y/n]? "; read -n 1 cont; echo
-	if [ "$user" == "" ]; then cont="n"; fi
-done
-echo -e "\n\n"
+user=acn-iot
+userFullName=acn iot
+password=acn-iot-pwd
 
 # ----- Setup hostname --------------------------------------
 setupHostname=1
@@ -45,23 +31,23 @@ echo -e "\n\nNow... Hang on... let's prepare this thing..."
 # ----- Refresh System --------------------------------------
 refreshSystem=1
 
-# ----- Refresh System --------------------------------------
-installPython=1
+# ----- Install Python --------------------------------------
+installPython=0
 
 # ----- Install NANO configurations -------------------------
 installNano=1
 
 # ----- Install Avahi Zeroconf ------------------------------
-installAvahi=1
+installAvahi=0
 
 # ----- Install Bluetooth suite -----------------------------
-installBluetooth=1
+installBluetooth=0
 
 # ----- Setting up US Locale & Keyboard ---------------------
 setupLocale=1
 
 # ----- Install node.js --------------------------------------
-installNode=1
+installNode=0
 
 # ----- Free Serial Port from console use --------------------------------------
 freeSerialPort=0
@@ -87,8 +73,8 @@ if [ "$refreshSystem" == "1" ]; then
 	echo -e " Updating APT-GET libraries and installed packages..."
 	echo -e "-------------------------------------------------------------------------------------"
 	sudo apt-get -y -qq update 							# Update library
-	sudo apt-get -y -qq upgrade 						# Upgrade all local libraries
-	sudo apt-get -y autoremove							# removes redundant packages after upgrade
+#	sudo apt-get -y -qq upgrade 						# Upgrade all local libraries
+#	sudo apt-get -y autoremove							# removes redundant packages after upgrade
 	echo -e "\n\nAPT-GET update complete\n\n"
 fi
 
